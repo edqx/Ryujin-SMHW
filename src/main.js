@@ -1,8 +1,6 @@
 const { app, BrowserWindow, Menu } = require("electron");
 const path = require("path");
 
-require("electron-reload")(__dirname);
-
 const menu = Menu.buildFromTemplate([{
     label: "File",
     submenu: []
