@@ -1,0 +1,164 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 4px;
+}
+
+table {
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+th, td {
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 4px;
+}
+
+#app-page-dash {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 8px;
+}
+
+#app-page-task {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 8px;
+}
+
+.dash-section {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+}
+
+#dash-section-tasks {
+    grid-area: 1 / 1 / 2 span / 2 span;
+}
+
+#dash-section-teachers {
+    grid-area: 1 / 3 / 1 / 3;
+}
+
+#dash-section-classes {
+    grid-area: 2 / 3 / 2 / 3;
+}
+
+#task-section-description { 
+    grid-area: 1 / 1 / 3 span / 2 span;
+}
+
+#task-section-information {
+    grid-area: 1 / 3 / 3 span / 3;
+}
+
+#task-section-submissions {
+    grid-area: 4 / 1 / 5 span / 3 span;
+}
+
+.section-title-container {
+    background-image: radial-gradient(#dddddd 1px, #ffffff 0px);
+    background-size: 3px 3px;
+    border-bottom: 1px solid #dddddd;
+    text-align: center;
+    flex: 0 1 0;
+}
+
+.section-title, .body-section-title {
+    background-color: white;
+}
+
+.section-body-container {
+    flex: 1 1 0;
+    padding: 4px;
+    display: flex;
+    flex-direction: column;
+}
+
+.section-body-container.row {
+    flex-direction: row;
+}
+
+
+.body-section {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.body-section-header {
+    flex: 0 1 0;
+}
+
+.body-section-titlebar {
+    flex: 0 1 0;
+    background-image: radial-gradient(#dddddd 1px, #ffffff 0px);
+    background-size: 3px 3px;
+    border-bottom: 1px solid #dddddd;
+    text-align: center;
+}
+
+.body-section-content {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: row;
+    overflow: auto;
+    max-width: 100%;
+}
+
+.body-section-content-item {
+    flex: 1 1 0;
+}
+
+.shrink {
+    flex: 0 1 0;
+}
+
+.task-table-row-homework {
+    background-color: #a3c1d9;
+}
+
+.task-table-row-flexibletask {
+    background-color: #ddcc98;
+}
+
+.task-table-row-quiz {
+    background-color: #fecbd2;
+}
+
+.task-table-row-spellingtest {
+    background-color: #bec5cb;
+}
+
+.task-table-row-classtest {
+    background-color: #b1cc9f
+}
+
+.task-table-row-past-separator {
+    border-bottom: 1px solid #f4ac90;
+}
+
+.submission-table-status-not-submitted {
+    background-color: #ee846a;
+}
+
+.submission-table-status-submitted-late {
+    background-color: #ddcc98
+}
+
+.submission-table-status-submitted {
+    background-color: #92f0bc;
+}
