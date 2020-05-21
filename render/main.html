@@ -2,7 +2,7 @@
     <head>
         <meta charset="utf-8"/>
         <link rel="stylesheet" href="static/main.css"/>
-        <title>Ryujin SMHW Client by weak eyes#4248</title>
+        <title>Ryujin SMHW Client v1.0.1a</title>
         <script defer src="static/render.js"></script>
     </head>
     <body>
@@ -15,7 +15,7 @@
                 </div>
                 <div class="section-body-container">
                     <br>
-                    <fieldset class="shrink" style="line-height: 4px;"">
+                    <fieldset class="shrink" style="line-height: 4px; margin-top: 5px">
                         <legend>Filter</legend>
                         <input id="filter-tasks-input" name="filter-tasks-input" onchange="render_tasks();">
                         <label for="filter-tasks-input">Title</label><br>
@@ -100,7 +100,7 @@
                                 <button id="selected-teacher-set-filter">Set filter</button>
                             </div>
                             <div class="body-section-content-item shrink">
-                                <img id="selected-teacher-avatar" src="https://via.placeholder.com/86" width=86 height=86/><br>
+                                <img class="user-avatar" id="selected-teacher-avatar" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" width=86 height=86/><br>
                                 <span id="selected-teacher-avatar-desc">User avatar</span>
                             </div>
                         </div>
@@ -175,13 +175,11 @@
                 </div>
             </div>
             <div class="dash-section" id="task-section-submissions">
-                <div class="section-title-container">
-                    <span class="section-title">
-                        Submissions
-                    </span>
-                </div>
                 <div class="section-body-container row">
                     <div class="body-section">
+                        <div class="body-section-titlebar">
+                            <span class="body-section-title">Submissions</span>
+                        </div>
                         <div class="body-section-header">
                             <input id="filter-submissions-input" name="filter-submissions-input" onchange="render_submissions()">
                             <label for="filter-submissions-input">Filter</label>
@@ -205,6 +203,26 @@
                     <div class="body-section">
                         <div class="body-section-titlebar">
                             <span class="body-section-title">Selected</span>
+                        </div>
+                        <div class="body-section-content" id="selected-submissions-selected" style="display: block">
+                            <div class="body-section-content-item">
+                                <div class="right">
+                                    <img class="user-avatar" id="selected-submission-avatar" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" width=86 height=86/><br>
+                                    Student avatar
+                                </div>
+                                <span id="selected-submission-id">ID: </span><br>
+                                <span id="selected-submission-student">Student: </span><br>
+                                <span id="selected-submission-student-id">Student ID: </span><br>
+                                <span id="selected-submission-status">Status: </span><br>
+                                <span id="selected-submission-grade">Grade: </span><br>
+                                <span id="selected-submission-overdue">Overdue: </span><br>
+                                <span id="selected-submission-comments">Comments: </span><br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="body-section">
+                        <div class="body-section-titlebar">
+                            <span class="body-section-title">Comments</span>
                         </div>
                         <div class="body-section-content" id="selected-submissions-comments" style="display: block">
                             

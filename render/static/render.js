@@ -125,7 +125,31 @@ function select_class_group(class_group) {
     }
 }
 
-function select_submission(submission) {
+function select_submission(sub) {
+    var submission = {
+        student_avatar: "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=",
+        id: "",
+        student_name: "",
+        student_id: "",
+        status: "",
+        grade: "",
+        overdue: "",
+        comments: "",
+
+        ...sub
+    }
+
+    const elem_structure = {
+        avatar: document.querySelector("#selected-submission-avatar"),
+        id: document.querySelector("#selected-submission-id"),
+        student: document.querySelector("#selected-submission-student"),
+        student_id: document.querySelector("#selected-submission-student-id"),
+        status: document.querySelector("#selected-submission-status"),
+        grade: document.querySelector("#selected-submission-grade"),
+        overdue: document.querySelector("#selected-submission-overdue"),
+        comments: document.querySelector("#selected-submission-comments"),
+    }
+
     var comments = document.querySelector("#selected-submissions-comments");
 
     var sub_comments = Object.values(_cache.comments).filter(comment => submission.comment_ids.indexOf(comment.id) !== -1);
@@ -135,6 +159,15 @@ function select_submission(submission) {
             new Date(comment.created_at).toLocaleString() +
             "</b>: " + comment.text + "<br><br>";
     }).join("");
+
+    elem_structure.avatar.src = submission.student_avatar || "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
+    elem_structure.id.innerHTML = "ID: " + submission.id;
+    elem_structure.student.innerHTML = "Student: " + submission.student_name;
+    elem_structure.student_id.innerHTML = "Student ID: " + submission.student_id;
+    elem_structure.status.innerHTML = "Status: " + submission.status;
+    elem_structure.grade.innerHTML = "Grade: " + submission.grade || "-";
+    elem_structure.overdue.innerHTML = "Overdue: " + submission.overdue;
+    elem_structure.comments.innerHTML = "Comments: " + submission.comment_ids.length;
 }
 
 function render_submissions() {
@@ -158,7 +191,12 @@ function render_submissions() {
 
             filtered.forEach(submission => {
                 const row = document.createElement("tr");
-                row.className = "submission-table-status-" + submission.status;
+
+                if (submission.status === "not-submitted" && selected_assignment.due_on + 86400000 > Date.now()) {
+                    row.className = "submission-table-status-" + submission.status + "-yet";
+                } else {
+                    row.className = "submission-table-status-" + submission.status;
+                }
 
                 const selectcont = document.createElement("td");
                 selectcont.className = "submission-table-select";
@@ -193,6 +231,8 @@ function render_submissions() {
             });
         }
     }
+    
+    select_submission(null);
 }
 
 function render_tasks() {
@@ -321,7 +361,7 @@ function render_tasks() {
             }
         }
     } else {
-        next(filered_teacher);
+        next(filtered_teacher);
     }
 }
 

@@ -91,12 +91,17 @@ th, td {
     flex-direction: row;
 }
 
+.user-avatar {
+    border: 1px solid black;
+}
 
 .body-section {
     flex: 1 1 0;
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    margin-left: 3px;
+    margin-right: 3px;
 }
 
 .body-section-header {
@@ -161,4 +166,12 @@ th, td {
 
 .submission-table-status-submitted {
     background-color: #92f0bc;
+}
+
+.submission-table-status-not-submitted-yet, .submission-table-status-null {
+    background-color: whitesmoke;
+}
+
+.right {
+    float: right;
 }

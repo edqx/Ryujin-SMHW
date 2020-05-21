@@ -1,5 +1,5 @@
 # Ryujin-SMHW
-v1.0.0a
+v1.0.1a
 
 ## Installation
 Run `git clone https://github.com/edqx/Ryujin-SMHW` in a command prompt in a directory of your choice.
