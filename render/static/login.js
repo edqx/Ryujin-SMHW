@@ -1,10 +1,16 @@
 const smhw = require("node-smhw");
 const client = new smhw.Client;
 
-// Globals
 var selected_school = null;
 
-// Input handlers
+function start_loader() {
+    document.querySelector(".loader").style.display = "block";
+}
+
+function end_loader() {
+    document.querySelector(".loader").style.display = "none";
+}
+
 function update_school() {
     var elem = document.querySelector(".center-login-school");
 
