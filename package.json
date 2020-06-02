@@ -1,12 +1,14 @@
 {
     "name": "ryujin-smhw",
     "version": "1.0.1",
+    "main": "src/main.js",
     "scripts": {
-        "start": "electron src/main.js"
+        "start": "electron src/main.js",
+        "build-win32-x64": "electron-packager . \"Ryujin SMHW\" --platform=win32 --arch=x64 --icon=\"render/static/icon.png\" --out=bin --overwrite"
     },
     "dependencies": {
         "electron": "^8.3.0",
         "electron-json-storage": "^4.1.8",
-        "node-smhw": "^1.1.2"
+        "node-smhw": "^1.1.5"
     }
 }

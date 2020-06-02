@@ -1,7 +1,6 @@
 const storage = require("electron-json-storage");
 const smhw = require("node-smhw");
 const fs = require("fs");
-const cred = require("../login.json");
 const https = require("https");
 
 const remote = require("electron").remote;
@@ -798,32 +797,44 @@ function render_class_groups() {
     });
 }
 
-client.login(cred.school, cred.username, cred.password).then(() => {
-    client.school.getEmployees().then(employees => {
-        client.school.getClassGroups().then(class_groups => {
-            client.getTasks().then(tasks => {
-                const teachers = employees.filter(employee => employee.employee_type === "teacher");
+storage.has("auth", function (err, has) {
+    if (err) {
+        return console.log(err);
+    }
 
-                teachers.forEach(teacher => {
-                    _cache.teachers[teacher.id] = teacher;
-                });
+    storage.get("auth", function (err, data) {
+        if (err) {
+            return console.log(err);
+        }
 
-                class_groups.forEach(class_group => {
-                    _cache.class_groups[class_group.id] = class_group;
-                });
-
-                tasks.forEach(task => {
-                    _cache.tasks[task.id] = task;
-                });
-
-                client.getUsers(my_teachers().map(employee => employee.id)).then(users => {
-                    users.forEach(user => {
-                        _cache.users[user.id] = user;
+        client.login(data).then(() => {
+            client.school.getEmployees().then(employees => {
+                client.school.getClassGroups().then(class_groups => {
+                    client.getTasks().then(tasks => {
+                        const teachers = employees.filter(employee => employee.employee_type === "teacher");
+        
+                        teachers.forEach(teacher => {
+                            _cache.teachers[teacher.id] = teacher;
+                        });
+        
+                        class_groups.forEach(class_group => {
+                            _cache.class_groups[class_group.id] = class_group;
+                        });
+        
+                        tasks.forEach(task => {
+                            _cache.tasks[task.id] = task;
+                        });
+        
+                        client.getUsers(my_teachers().map(employee => employee.id)).then(users => {
+                            users.forEach(user => {
+                                _cache.users[user.id] = user;
+                            });
+                            
+                            render_tasks();
+                            render_teachers();
+                            render_class_groups();
+                        });
                     });
-                    
-                    render_tasks();
-                    render_teachers();
-                    render_class_groups();
                 });
             });
         });
