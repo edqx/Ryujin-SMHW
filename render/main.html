@@ -2,7 +2,7 @@
     <head>
         <meta charset="utf-8"/>
         <link rel="stylesheet" href="static/main.css"/>
-        <title>Ryujin SMHW Client v1.0.1a</title>
+        <title>Ryujin SMHW Client v1.0.4a</title>
         <script defer src="static/render.js"></script>
     </head>
     <body>
@@ -159,12 +159,13 @@
         <div id="app-page-task" style="display: none;">
             <div class="dash-section" id="task-section-description">
                 <div class="section-title-container">
-                    <span class="section-title">
-                        Task
-                    </span>
+                    <span class="section-title" id="task-title"></span>
                 </div>
-                <div class="section-body-container">
+                <div class="section-body-container" style="overflow: hidden;">
                     <a href="#" onclick="task_back()">Back</a>
+                    <div class="body-section-content-item" id="task-description" style="overflow: auto">
+
+                    </div>
                 </div>
             </div>
             <div class="dash-section" id="task-section-information">
@@ -173,10 +174,89 @@
                         Information
                     </span>
                 </div>
+                <div class="body-section-container">
+                    <div class="body-section">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="dash-section" id="task-section-attachments">
+                <div class="section-title-container">
+                    <span class="section-title">
+                        Attachments
+                    </span>
+                </div>
+                <div class="section-body-container">
+                    <div class="body-section">
+                        <div class="body-secton-header">
+                            <input id="filter-attachments-input" name="filter-attachments-input" onchange="render_attachments()">
+                            <label for="filter-attachments-input">Filter</label>
+                        </div>
+                        <div class="body-section-content">
+                            <table class="body-section-content-item">
+                                <thead class="body-section-content-table-header">
+                                    <tr>
+                                        <th class="attachments-table-download"></th>
+                                        <th class="attachments-table-filename">Filename</th>
+                                        <th class="attachments-table-filesize">File size</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="body-section-table-body" id="attachments-table-body">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dash-section" id="task-section-questions">
+                <div class="section-title-container">
+                    <span class="section-title">
+                        Questions
+                    </span>
+                </div>
+                <div class="section-body-container">
+                    <div class="body-section">
+                        <div class="body-section-header">
+                            <input id="filter-questions-input" name="filter-questions-input" onchange="render_questions()">
+                            <label for="filter-questions-input">Filter</label>
+                        </div>
+                        <div class="body-section-content">
+                            <table class="body-section-content-item">
+                                <thead class="body-section-table-header">
+                                    <tr>
+                                        <th class="questions-table-select"></th>
+                                        <th class="questions-table-num">#</th>
+                                        <th class="questions-table-question">Question</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="body-section-table-body" id="questions-table-body">
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="body-section">
+                        <div class="body-section-titlebar">
+                            <span class="body-section-title">Selected</span>
+                        </div>
+                        <div class="body-section-content">
+                            <div class="body-section-content-item">
+                                <!--<div class="right">
+                                    <img id="selected-question-image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="/><br>
+                                    Question image
+                                </div>-->
+                                <span id="selected-question-id">ID: </span><br>
+                                <span id="selected-question-question">Question: </span><br>
+                                <span id="selected-question-options">Options: </span><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="dash-section" id="task-section-submissions">
                 <div class="section-body-container row">
-                    <div class="body-section">
+                    <div class="body-section" id="submission-list">
                         <div class="body-section-titlebar">
                             <span class="body-section-title">Submissions</span>
                         </div>
@@ -188,10 +268,10 @@
                             <table class="body-section-content-item">
                                 <thead class="body-section-table-header">
                                     <tr>
-                                        <th class="class-submissions-select"></th>
-                                        <th class="class-submissions-student">Student</th>
-                                        <th class="class-submissions-status">Status</th>
-                                        <th class="class-submissions-grade">Grade</th>
+                                        <th class="submissions-table-select"></th>
+                                        <th class="submissions-table-student">Student</th>
+                                        <th class="submissions-table-status">Status</th>
+                                        <th class="submissions-table-grade">Grade</th>
                                     </tr>
                                 </thead>
                                 <tbody class="body-section-table-body" id="submissions-table-body">
@@ -202,12 +282,12 @@
                     </div>
                     <div class="body-section">
                         <div class="body-section-titlebar">
-                            <span class="body-section-title">Selected</span>
+                            <span class="body-section-title" id="submission-selected-title">Selected</span>
                         </div>
-                        <div class="body-section-content" id="selected-submissions-selected" style="display: block">
+                        <div class="body-section-content" id="selected-submissions-selected" style="display: block;">
                             <div class="body-section-content-item">
                                 <div class="right">
-                                    <img class="user-avatar" id="selected-submission-avatar" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" width=86 height=86/><br>
+                                    <img class="user-avatar" id="selected-submission-avatar" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" width=128 height=128/><br>
                                     Student avatar
                                 </div>
                                 <span id="selected-submission-id">ID: </span><br>
@@ -224,8 +304,12 @@
                         <div class="body-section-titlebar">
                             <span class="body-section-title">Comments</span>
                         </div>
-                        <div class="body-section-content" id="selected-submissions-comments" style="display: block">
+                        <div class="body-section-content" id="selected-submissions-comments" style="display: block;">
                             
+                        </div>
+                        <div class="body-section-content" id="selected-submission-post-comment" style="display: none; flex-direction: column;">
+                            <textarea class="body-section-content-item" id="selected-submission-comment-input" placeholder="Add a comment.."></textarea>
+                            <button class="shrink" onclick="post_comment();">Submit</button>
                         </div>
                     </div>
                 </div>

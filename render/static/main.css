@@ -20,6 +20,10 @@ th, td {
     padding: 4px;
 }
 
+textarea {
+    resize: none;
+}
+
 #app-page-dash {
     width: 100%;
     height: 100%;
@@ -33,8 +37,8 @@ th, td {
     width: 100%;
     height: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 3fr 3fr 4fr;
     grid-gap: 8px;
 }
 
@@ -57,15 +61,23 @@ th, td {
 }
 
 #task-section-description { 
-    grid-area: 1 / 1 / 3 span / 2 span;
+    grid-area: 1 / 1 / 2 span / 1;
 }
 
 #task-section-information {
-    grid-area: 1 / 3 / 3 span / 3;
+    grid-area: 1 / 2 / 1 / 2;
+}
+
+#task-section-questions {
+    grid-area: 1 / 2 / 2 span / 2;
+}
+
+#task-section-attachments {
+    grid-area: 2 / 2 / 2 / 2;
 }
 
 #task-section-submissions {
-    grid-area: 4 / 1 / 5 span / 3 span;
+    grid-area: 3 / 1 / 3 / 2 span;
 }
 
 .section-title-container {
@@ -149,11 +161,31 @@ th, td {
 }
 
 .task-table-row-classtest {
-    background-color: #b1cc9f
+    background-color: #b1cc9f;
 }
 
 .task-table-row-past-separator {
     border-bottom: 1px solid #f4ac90;
+}
+
+.task-title-homework {
+    background-image: radial-gradient(#dddddd 1px, #a3c1d9 0px);
+}
+
+.task-title-flexibletask {
+    background-image: radial-gradient(#dddddd 1px, #ddcc98 0px);
+}
+
+.task-title-quiz {
+    background-image: radial-gradient(#dddddd 1px, #fecbd2 0px);
+}
+
+.task-title-spellingtest {
+    background-image: radial-gradient(#dddddd 1px, #bec5cb 0px);
+}
+
+.task-title-classtest {
+    background-image: radial-gradient(#dddddd 1px, #b1cc9f 0px);
 }
 
 .submission-table-status-not-submitted {
@@ -169,7 +201,19 @@ th, td {
 }
 
 .submission-table-status-not-submitted-yet, .submission-table-status-null {
-    background-color: whitesmoke;
+    background-color: #f5f5f5;
+}
+
+.submission-comment-out {
+    background-color: #b6b9ff;
+}
+
+.submission-comment-in {
+    background-color: #b5ead7;
+}
+
+.questions-table-question {
+    max-width: 315px;
 }
 
 .right {

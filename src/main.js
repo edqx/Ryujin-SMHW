@@ -1,6 +1,10 @@
 const { app, BrowserWindow, Menu } = require("electron");
 const path = require("path");
 
+const storage = require("electron-json-storage");
+
+app.allowRendererProcessReuse = false;
+
 app.on("ready", () => {
     const window = new BrowserWindow({
         minWidth: 1280,
