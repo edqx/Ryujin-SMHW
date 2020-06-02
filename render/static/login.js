@@ -1,4 +1,5 @@
 const smhw = require("node-smhw");
+const storage = require("electron-json-storage");
 const client = new smhw.Client;
 
 var selected_school = null;
@@ -42,12 +43,12 @@ function create_session() {
     if (selected_school) {
         if (username) {
             if (password) {
-                 start_loader();
+                start_loader();
 
                 client.login(selected_school.id, username, password).then(function () {
                     end_loader();
 
-                    storage.set("auth", client.access, function (err) {
+                    storage.set("auth", client._auth, function (err) {
                         if (err) {
                             note.className = "center-login-note center-login-error";
                             note.innerHTML = "An error occured, check console for details.";
@@ -59,6 +60,8 @@ function create_session() {
                         start_dash();
                     });
                 }).catch(function (e) {
+                    console.log(e);
+
                     end_loader();
                     document.querySelector(".center-login-container").style.display = "block";
                     note.className = "center-login-note center-login-error";

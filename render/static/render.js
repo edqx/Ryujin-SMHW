@@ -246,7 +246,12 @@ function select_question(_question) {
 
     elem_structure.id.innerHTML = "ID: " + question.id;
     elem_structure.question.innerHTML = "Question: " + question.description;
-    elem_structure.options.innerHTML = question.options;
+    
+    const chars = "abcdefghijklmnopqrstuvwxyz"
+
+    elem_structure.options.innerHTML = question.options.map((o, i) => {
+        return chars[i] + ". " + o + (o === question.correct_answer ? " (✓)" : " (✗)");
+    }).join("<br>");
 }
 
 function select_submission(_submission) {
@@ -401,15 +406,15 @@ function render_questions() {
                 num.innerHTML = (i + 1) + ".";
                 num.className = "question-table-num";
 
-                const question = document.createElement("td");
-                question.innerHTML = question.description;
-                question.className = "questions-table-question";
+                const question_ = document.createElement("td");
+                question_.innerHTML = question.description;
+                question_.className = "questions-table-question";
 
                 selectcont.appendChild(select);
 
                 row.appendChild(selectcont);
                 row.appendChild(num);
-                row.appendChild(description);
+                row.appendChild(question_);
 
                 questions.appendChild(row);
             });
