@@ -1,5 +1,5 @@
 # Ryujin-SMHW
-v1.0.6a
+v1.1.0a
 
 ## Installation
 Run `git clone https://github.com/edqx/Ryujin-SMHW` in a command prompt in a directory of your choice.
@@ -10,6 +10,9 @@ Run `cd Ryujin-SMHW` then `npm install` to install all dependencies, which I hav
 ## Execution
 Just run `npm start` and it should just run. If you encounter any issues, make 
 sure to open an issue on this repository.
+
+## Build
+You can run `npm build-<platform>-<arch>` to build the program for your platform or arch. See `package.json` `.scripts` for help if this command does not work.
 
 ## Update
 To update the application, go to the created repository folder in a command prompt and enter `git pull`. This should automatically fetch all updates and be ready for use, you do not need to download dependencies again or enter login information.
