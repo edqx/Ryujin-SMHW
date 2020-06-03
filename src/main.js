@@ -49,13 +49,11 @@ app.on("ready", () => {
 			click: function() {
 				storage.remove("auth", function (err) {
 					app.relaunch();
-					app.quit();
+					app.exit(0);
 				});
 			}
 		}]
 	}]);
-
-    Menu.setApplicationMenu(menu);
 
     storage.has("auth", function (err, has) {
 		if (err) {
@@ -64,6 +62,8 @@ app.on("ready", () => {
 		}
 		
 		if (has) {
+			Menu.setApplicationMenu(menu);
+
 			window = new BrowserWindow({
 				minWidth: 1280,
 				minHeight: 720,
@@ -83,11 +83,15 @@ app.on("ready", () => {
 				},
 				icon: path.resolve(__dirname, "../render/static/icon.png"),
 				resiable: false,
-				frame: false,
-				transparent: true
+				transparent: true,
+				frame: false
 			});
 
 			window.loadFile(path.resolve(__dirname, "../render/login.html"));
+
+			window.on("blur", function () {
+				window.close();
+			});
 		}
 	});
 });

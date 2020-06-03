@@ -813,6 +813,10 @@ storage.has("auth", function (err, has) {
         }
 
         client.login(data).then(() => {
+            if (!data.remember) {
+                storage.remove("auth", console.log);
+            }
+            
             client.school.getEmployees().then(employees => {
                 client.school.getClassGroups().then(class_groups => {
                     client.getTasks().then(tasks => {

@@ -37,6 +37,7 @@ function create_session() {
 
     var username = document.querySelector(".center-login-username").value;
     var password = document.querySelector(".center-login-password").value;
+    var remember = document.querySelector(".center-login-remember-login").checked;
 
     document.querySelector(".center-login-container").style.display = "none";
 
@@ -47,6 +48,8 @@ function create_session() {
 
                 client.login(selected_school.id, username, password).then(function () {
                     end_loader();
+
+                    client._auth.remember = remember;
 
                     storage.set("auth", client._auth, function (err) {
                         if (err) {
