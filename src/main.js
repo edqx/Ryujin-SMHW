@@ -82,7 +82,7 @@ app.on("ready", () => {
 					nodeIntegration: true
 				},
 				icon: path.resolve(__dirname, "../render/static/icon.png"),
-				resiable: false,
+				resizable: false,
 				transparent: true,
 				frame: false
 			});
